@@ -29,10 +29,14 @@ end
 
 group :development do
   gem 'rails_best_practices'
-  gem 'brakeman', :require => false
+  gem 'brakeman', require: false
   gem 'bullet'
   gem 'rack-mini-profiler'
   gem 'rubocop', require: false
-  gem 'rubycritic', :require => false
+  gem 'rubycritic', require: false
   gem 'traceroute'
+end
+
+group :test do
+  gem 'rspec'
 end
