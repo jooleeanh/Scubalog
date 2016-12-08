@@ -33,4 +33,5 @@ group :development do
   gem 'bullet'
   gem 'rack-mini-profiler'
   gem 'rubocop', require: false
+  gem 'rubycritic', :require => false
 end
