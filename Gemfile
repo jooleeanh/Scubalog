@@ -28,4 +28,5 @@ group :development, :test do
 end
 
 group :development do
+  gem 'rubycritic', :require => false
 end
