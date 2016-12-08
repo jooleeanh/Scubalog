@@ -32,4 +32,5 @@ group :development do
   gem 'brakeman', :require => false
   gem 'bullet'
   gem 'rack-mini-profiler'
+  gem 'rubocop', require: false
 end
