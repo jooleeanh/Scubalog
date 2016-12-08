@@ -34,4 +34,5 @@ group :development do
   gem 'rack-mini-profiler'
   gem 'rubocop', require: false
   gem 'rubycritic', :require => false
+  gem 'traceroute'
 end
