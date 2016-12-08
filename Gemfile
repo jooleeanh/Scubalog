@@ -31,4 +31,5 @@ group :development do
   gem 'rails_best_practices'
   gem 'brakeman', :require => false
   gem 'bullet'
+  gem 'rack-mini-profiler'
 end
