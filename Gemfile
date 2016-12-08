@@ -28,5 +28,9 @@ group :development, :test do
 end
 
 group :development do
+<<<<<<< HEAD
   gem 'rails_best_practices'
+=======
+  gem 'brakeman', :require => false
+>>>>>>> gem-brakeman
 end
