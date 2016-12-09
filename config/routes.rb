@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users, controllers: { sessions: 'users/sessions' }
   root to: 'pages#home'
+  devise_for :users, controllers: { sessions: 'users/sessions' }
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 end
