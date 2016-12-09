@@ -10,6 +10,7 @@ gem 'redis'
 gem 'devise'
 gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'rails_admin', '>= 1.0.0.rc'
+gem 'omniauth-facebook'
 
 gem 'sass-rails'
 gem 'jquery-rails'
