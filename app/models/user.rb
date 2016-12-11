@@ -1,6 +1,11 @@
 class User < ApplicationRecord
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
+  ADMINS = [
+    "julian.honma@gmail.com",
+    "nicolas.sitternolleau@yahoo.com",
+    "personne6@hotmail.fr"
+  ]
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable
@@ -8,6 +13,7 @@ class User < ApplicationRecord
   :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
+  has_many :identities, dependent: :destroy
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
 
@@ -26,20 +32,27 @@ class User < ApplicationRecord
       # Get the existing user by email if the provider gives us a verified email.
       # If no verified email was provided we assign a temporary email and ask the
       # user to verify it on the next step via UsersController.finish_signup
-      email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
-      email = auth.info.email if email_is_verified
+      ## email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
+      email = auth.info.email # if email_is_verified
       user = User.where(:email => email).first if email
-
       # Create the user if it's a new registration
       if user.nil?
         user = User.new(
         name: auth.extra.raw_info.name,
+        first_name: auth.extra.raw_info.first_name || auth.info.first_name,
+        last_name: auth.extra.raw_info.last_name || auth.info.last_name,
+        gender: auth.extra.raw_info.gender,
         #username: auth.info.nickname || auth.uid,
         email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
         password: Devise.friendly_token[0,20]
         )
         # user.skip_confirmation!
-        user.skip_confirmation! if user.respond_to?(:skip_confirmation)
+        case auth.provider
+        when "google_oauth2" then user.google_picture_url = auth.info.image
+        when "facebook" then user.facebook_picture_url = auth.info.image
+        end
+        user.admin = true if ADMINS.include?(user.email)
+        user.skip_confirmation! if user.respond_to?(:skip_confirmation) || user.email.nil?
         user.save!
       end
     end
