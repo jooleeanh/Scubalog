@@ -10,4 +10,18 @@ module ApplicationHelper
       end
     end
   end
+
+  def login_button(provider)
+    case provider
+    when :facebook then "button_login_facebook.png"
+    when :google_oauth2 then "button_login_google.png"
+    end
+  end
+
+  def social(provider)
+    case provider
+    when :facebook then "facebook"
+    when :google_oauth2 then "google"
+    end
+  end
 end
