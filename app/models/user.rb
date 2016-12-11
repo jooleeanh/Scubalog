@@ -35,6 +35,11 @@ class User < ApplicationRecord
       ## email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
       email = auth.info.email # if email_is_verified
       user = User.where(:email => email).first if email
+      case auth.provider
+      when "google_oauth2" then user.google_picture_url = auth.info.image
+      when "facebook" then user.facebook_picture_url = auth.info.image
+      end
+
       # Create the user if it's a new registration
       if user.nil?
         user = User.new(
@@ -47,10 +52,6 @@ class User < ApplicationRecord
         password: Devise.friendly_token[0,20]
         )
         # user.skip_confirmation!
-        case auth.provider
-        when "google_oauth2" then user.google_picture_url = auth.info.image
-        when "facebook" then user.facebook_picture_url = auth.info.image
-        end
         user.admin = true if ADMINS.include?(user.email)
         user.skip_confirmation! if user.respond_to?(:skip_confirmation) || user.email.nil?
         user.save!
