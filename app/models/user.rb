@@ -26,29 +26,36 @@ class User < ApplicationRecord
     # can be cleaned up at a later date.
     user = signed_in_resource ? signed_in_resource : identity.user
     email = auth.info.email # if email_is_verified
-    user = User.where(:email => email).first
 
-    # Create the user if needed
-    if user.nil?
-      user = User.new unless user
-      user.email = email
-      set_admin(user)
-      set_info(user, auth)
-    end
-
+    user = set_user(email, auth)
+    set_admin(user)
     set_image(user, auth)
     set_extra(user, auth)
+    set_identity(user, identity)
 
-    # Associate the identity with the user if needed
-    if identity.user != user
-      identity.user = user
-      identity.save!
-    end
+    user.skip_confirmation! if user_complete_info?(user)
     user
   end
 
   def email_verified?
     self.email && self.email !~ TEMP_EMAIL_REGEX
+  end
+
+  def self.set_user(email, auth)
+    user = User.where(email: email).first
+    if user.nil?
+      user = User.new unless user
+      user.email = email
+      set_info(user, auth)
+    end
+    user
+  end
+
+  def self.set_identity(user, identity)
+    if identity.user != user
+      identity.user = user
+      identity.save!
+    end
   end
 
   def self.set_extra(user, auth)
@@ -59,16 +66,15 @@ class User < ApplicationRecord
     name = auth.extra.raw_info.name
     first_name = auth.extra.raw_info.first_name || auth.info.first_name
     last_name = auth.extra.raw_info.last_name || auth.info.last_name
+    email = user.email ? user.email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com"
+
     user.update(
-    name: name,
-    first_name: first_name,
-    last_name: last_name,
-    #username: auth.info.nickname || auth.uid,
-    email: user.email ? user.email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
-    password: Devise.friendly_token[0,20]
+      name: name,
+      first_name: first_name,
+      last_name: last_name,
+      email: email,
+      password: Devise.friendly_token[0,20]
     )
-    # user.skip_confirmation!
-    user.skip_confirmation! if user_complete_info?(user)
   end
 
   def self.set_image(user, auth)
