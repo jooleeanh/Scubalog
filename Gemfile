@@ -16,6 +16,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-github'
 gem 'omniauth-linkedin'
+gem 'pundit'
 
 gem 'sass-rails'
 gem 'jquery-rails'
