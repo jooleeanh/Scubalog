@@ -55,4 +55,40 @@ class User < ApplicationRecord
   def email_verified?
     self.email && self.email !~ TEMP_EMAIL_REGEX
   end
+
+  def self.set_extra(user, auth)
+    user.update(gender: auth.extra.raw_info.gender)
+  end
+
+  def self.set_info(user, auth)
+    byebug
+    name = auth.extra.raw_info.name
+    first_name = auth.extra.raw_info.first_name || auth.info.first_name
+    last_name = auth.extra.raw_info.last_name || auth.info.last_name
+    user.update(
+    name: name,
+    first_name: first_name,
+    last_name: last_name,
+    #username: auth.info.nickname || auth.uid,
+    email: user.email ? user.email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
+    password: Devise.friendly_token[0,20]
+    )
+    # user.skip_confirmation!
+    user.skip_confirmation! if user_complete_info?(user)
+  end
+
+  def self.set_image(user, auth)
+    case auth.provider
+    when "google_oauth2" then user.update(google_picture_url: auth.info.image)
+    when "facebook" then user.update(facebook_picture_url: auth.info.image)
+    end
+  end
+
+  def self.set_admin(user)
+    user.update(admin: true) if ADMINS.include?(user.email)
+  end
+
+  def self.user_complete_info?(user)
+    user.respond_to?(:skip_confirmation) || user.email.nil?
+  end
 end

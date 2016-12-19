@@ -2,7 +2,12 @@
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
 
-  config.omniauth :facebook, ENV["FB_ID"], ENV["FB_SECRET"]
+  config.omniauth :facebook, ENV["FB_ID"], ENV["FB_SECRET"],
+    scope: 'email',
+    display: 'popup',
+    image_size: { width: 200, height: 200 },
+    info_fields: 'email, first_name, last_name',
+    secure_image_url: true
   # config.omniauth :twitter, ENV["TWITTER_KEY"], ENV["TWITTER_SECRET"]
   config.omniauth :google_oauth2, ENV["GOOGLE_CLIENT_ID"], ENV["GOOGLE_CLIENT_SECRET"]
   # config.omniauth :github, ENV["GITHUB_KEY"], ENV["GITHUB_SECRET"]
