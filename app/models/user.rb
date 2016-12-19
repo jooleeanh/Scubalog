@@ -14,6 +14,29 @@ class User < ApplicationRecord
 
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
   has_many :identities, dependent: :destroy
+  after_create :set_default_picture, :set_admin
+
+  def email_verified?
+    self.email && self.email !~ TEMP_EMAIL_REGEX
+  end
+
+  private
+
+  def set_default_picture
+    unless picture_url?
+      self.update(avatar_picture_url: "diver_avatar.png")
+    end
+  end
+
+  def set_admin
+    if ADMINS.include?(self.email) && picture_url?
+      self.update(admin: true)
+    end
+  end
+
+  def picture_url?
+    self.facebook_picture_url || self.google_picture_url
+  end
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
 
@@ -28,17 +51,12 @@ class User < ApplicationRecord
     email = auth.info.email # if email_is_verified
 
     user = set_user(email, auth)
-    set_admin(user)
     set_image(user, auth)
     set_extra(user, auth)
     set_identity(user, identity)
 
     user.skip_confirmation! if user_complete_info?(user)
     user
-  end
-
-  def email_verified?
-    self.email && self.email !~ TEMP_EMAIL_REGEX
   end
 
   def self.set_user(email, auth)
@@ -79,13 +97,13 @@ class User < ApplicationRecord
 
   def self.set_image(user, auth)
     case auth.provider
-    when "google_oauth2" then user.update(google_picture_url: auth.info.image)
-    when "facebook" then user.update(facebook_picture_url: auth.info.image)
+    when "google_oauth2"
+      user.update(google_picture_url: auth.info.image)
+      user.update(avatar_picture_url: auth.info.image) unless user.facebook_picture_url
+    when "facebook"
+      user.update(facebook_picture_url: auth.info.image)
+      user.update(avatar_picture_url: auth.info.image)
     end
-  end
-
-  def self.set_admin(user)
-    user.update(admin: true) if ADMINS.include?(user.email)
   end
 
   def self.user_complete_info?(user)
