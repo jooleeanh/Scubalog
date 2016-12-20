@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161220202217) do
+ActiveRecord::Schema.define(version: 20161220210538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "animals", force: :cascade do |t|
+    t.string   "name"
+    t.string   "image_url"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "divespots", force: :cascade do |t|
     t.string   "name"
@@ -114,6 +122,16 @@ ActiveRecord::Schema.define(version: 20161220202217) do
     t.index ["user_id"], name: "index_scubadives_on_user_id", using: :btree
   end
 
+  create_table "sightings", force: :cascade do |t|
+    t.integer  "animal_id"
+    t.string   "sighteable_type"
+    t.integer  "sighteable_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["animal_id"], name: "index_sightings_on_animal_id", using: :btree
+    t.index ["sighteable_type", "sighteable_id"], name: "index_sightings_on_sighteable_type_and_sighteable_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -153,4 +171,5 @@ ActiveRecord::Schema.define(version: 20161220202217) do
   add_foreign_key "scubadives", "divespots"
   add_foreign_key "scubadives", "gear_sets"
   add_foreign_key "scubadives", "users"
+  add_foreign_key "sightings", "animals"
 end

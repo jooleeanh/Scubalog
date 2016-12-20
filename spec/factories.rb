@@ -1,4 +1,12 @@
 FactoryGirl.define do
+  factory :sighting do
+    
+  end
+  factory :animal do
+    name "MyString"
+    image_url "MyString"
+    description "MyText"
+  end
   factory :scubadive do
     user nil
     divespot nil
