@@ -1,0 +1,2 @@
+class Divespot < ApplicationRecord
+end
