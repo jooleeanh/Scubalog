@@ -1,4 +1,7 @@
 FactoryGirl.define do
+  factory :buddy do
+    
+  end
   factory :sighting do
     
   end
