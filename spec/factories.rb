@@ -1,4 +1,8 @@
 FactoryGirl.define do
+  factory :gear_set do
+    user nil
+    name "MyString"
+  end
   factory :gear do
     category "MyString"
     brand "MyString"
