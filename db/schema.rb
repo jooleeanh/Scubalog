@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161219223037) do
+ActiveRecord::Schema.define(version: 20161220153250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "divespots", force: :cascade do |t|
+    t.string   "name"
+    t.string   "location"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.float    "max_depth"
+    t.float    "avg_depth"
+    t.float    "salinity"
+    t.boolean  "shore"
+    t.string   "entry_difficulty"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
@@ -22,15 +36,6 @@ ActiveRecord::Schema.define(version: 20161219223037) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_identities_on_user_id", using: :btree
-  end
-
-  create_table "spots", force: :cascade do |t|
-    t.string   "name"
-    t.string   "location"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
