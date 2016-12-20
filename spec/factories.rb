@@ -1,4 +1,21 @@
 FactoryGirl.define do
+  factory :freedife, class: 'Freedive' do
+    user nil
+    divespot nil
+    gear_set nil
+    start_at "2016-12-20 19:33:03"
+    end_at "2016-12-20 19:33:03"
+    enjoyment 1
+    comments "MyText"
+    dive_type "MyString"
+    tip "MyText"
+    max_depth 1.5
+    avg_depth 1.5
+    min_temp 1
+    max_temp 1
+    visibility 1
+    map_tracks ""
+  end
   factory :scubadife, class: 'Scubadive' do
     user nil
     divespot nil

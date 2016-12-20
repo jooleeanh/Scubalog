@@ -1,6 +1,6 @@
-class CreateScubadives < ActiveRecord::Migration[5.0]
+class CreateFreedives < ActiveRecord::Migration[5.0]
   def change
-    create_table :scubadives do |t|
+    create_table :freedives do |t|
       t.references :user, foreign_key: true
       t.references :divespot, foreign_key: true
       t.references :gear_set, foreign_key: true
@@ -16,8 +16,6 @@ class CreateScubadives < ActiveRecord::Migration[5.0]
       t.float :avg_depth
       t.integer :min_temp
       t.integer :max_temp
-      t.integer :start_air
-      t.integer :end_air
 
       t.timestamps
     end
