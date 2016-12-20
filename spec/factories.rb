@@ -10,12 +10,6 @@ FactoryGirl.define do
     shore false
     entry_difficulty "MyString"
   end
-  factory :spot do
-    name "MyString"
-    location "MyString"
-    latitude 1.5
-    longitude 1.5
-  end
   factory :user do
     email 'test@example.com'
     password 'f4k3p455w0rd'
