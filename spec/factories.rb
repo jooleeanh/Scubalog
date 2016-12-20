@@ -1,10 +1,29 @@
 FactoryGirl.define do
-  factory :freedife, class: 'Freedive' do
+  factory :scubadive do
     user nil
     divespot nil
     gear_set nil
-    start_at "2016-12-20 19:33:03"
-    end_at "2016-12-20 19:33:03"
+    start_at "2016-12-20 21:22:17"
+    end_at "2016-12-20 21:22:17"
+    enjoyment 1
+    comments "MyText"
+    dive_type "MyString"
+    tip "MyText"
+    max_depth 1.5
+    avg_depth 1.5
+    min_temp 1.5
+    max_temp 1.5
+    visibility 1
+    start_air 1
+    end_air 1
+    polygon ""
+  end
+  factory :freedive do
+    user nil
+    divespot nil
+    gear_set nil
+    start_at "2016-12-20 21:21:55"
+    end_at "2016-12-20 21:21:55"
     enjoyment 1
     comments "MyText"
     dive_type "MyString"
@@ -15,26 +34,6 @@ FactoryGirl.define do
     max_temp 1
     visibility 1
     map_tracks ""
-  end
-  factory :scubadife, class: 'Scubadive' do
-    user nil
-    divespot nil
-    gear_set nil
-    start_at "2016-12-20 19:10:14"
-    end_at "2016-12-20 19:10:14"
-    enjoyment 1
-    comments "MyText"
-    dive_type "MyString"
-    tip "MyText"
-    max_depth 1.5
-    avg_depth "MyString"
-    float "MyString"
-    min_temp 1.5
-    max_temp 1.5
-    visibility 1
-    start_air 1
-    end_air 1
-    polygon ""
   end
   factory :gear_use do
     gear_set nil

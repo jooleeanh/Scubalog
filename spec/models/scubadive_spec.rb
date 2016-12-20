@@ -10,11 +10,11 @@ RSpec.describe Scubadive, type: :model do
   it "is not valid without a start_at value"
   it "is not valid without a end_at value"
   it "enjoyment is between 1 and 5"
+  it "visibility is positive"
   it "max_depth is positive"
   it "avg_depth is positive"
   it "min_temp is positive"
   it "max_temp is positive"
   it "start_air is positive"
   it "end_air is positive"
-  it "visibility is positive"
 end
