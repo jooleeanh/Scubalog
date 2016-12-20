@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Animal, type: :model do
   it "is valid with valid attributes"
-  it "must have a name"
-  it "name must be unique"
+  it "has a name"
+  it "has a unique name"
+  it "can have many sightings"
 end
