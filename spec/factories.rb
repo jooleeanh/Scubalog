@@ -1,4 +1,20 @@
 FactoryGirl.define do
+  factory :gear_use do
+    gear_set nil
+    gear nil
+  end
+  factory :gear_set do
+    user nil
+    name "MyString"
+  end
+  factory :gear do
+    category "MyString"
+    brand "MyString"
+    model "MyString"
+    size "MyString"
+    detail "MyString"
+    purchased_on "2016-12-20"
+  end
   factory :divespot do
     name "MyString"
     location "MyString"
