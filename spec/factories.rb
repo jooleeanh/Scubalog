@@ -8,7 +8,7 @@ FactoryGirl.define do
     enjoyment 1
     comments "MyText"
     dive_type "MyString"
-    tip "MyText"
+    tip_for_others "MyText"
     max_depth 1.5
     avg_depth 1.5
     min_temp 1.5
@@ -27,7 +27,7 @@ FactoryGirl.define do
     enjoyment 1
     comments "MyText"
     dive_type "MyString"
-    tip "MyText"
+    tip_for_others "MyText"
     max_depth 1.5
     avg_depth 1.5
     min_temp 1

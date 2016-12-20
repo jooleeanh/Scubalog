@@ -9,7 +9,7 @@ class CreateFreedives < ActiveRecord::Migration[5.0]
       t.integer :enjoyment
       t.text :comments
       t.string :dive_type
-      t.text :tip
+      t.text :tip_for_others
       t.float :max_depth
       t.float :avg_depth
       t.integer :min_temp
