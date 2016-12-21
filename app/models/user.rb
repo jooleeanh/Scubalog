@@ -23,10 +23,11 @@
 #  google_picture_url     :string
 #  dob                    :date
 #  gender                 :integer
-#  location               :string
-#  latitude               :string
-#  longitude              :string
 #  avatar_picture_url     :string
+#  location               :hstore
+#  latitude               :float
+#  longitude              :float
+#  preferences            :hstore
 #
 # Indexes
 #
@@ -53,6 +54,8 @@ class User < ApplicationRecord
   after_update :set_default_picture, :set_admin
 
   enum gender: { undisclosed_gender: 0, male: 1, female: 2 }
+  store_accessor :preferences, :unit
+  store_accessor :location, :full, :city, :state, :region, :country
 
   def email_verified?
     self.email && self.email !~ TEMP_EMAIL_REGEX
@@ -83,7 +86,7 @@ class User < ApplicationRecord
 
   def set_default_picture
     unless picture_url?
-      self.update(avatar_picture_url: "diver_avatar.png")
+      self.update_column(avatar_picture_url: "diver_avatar.png")
     end
   end
 

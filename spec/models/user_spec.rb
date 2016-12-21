@@ -23,10 +23,11 @@
 #  google_picture_url     :string
 #  dob                    :date
 #  gender                 :integer
-#  location               :string
-#  latitude               :string
-#  longitude              :string
 #  avatar_picture_url     :string
+#  location               :hstore
+#  latitude               :float
+#  longitude              :float
+#  preferences            :hstore
 #
 # Indexes
 #
