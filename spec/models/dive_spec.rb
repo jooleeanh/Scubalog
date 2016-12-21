@@ -27,11 +27,15 @@ require 'rails_helper'
 
 RSpec.describe Dive, type: :model do
   it "is valid with valid attributes"
-  it "has a start_at datetime"
-  it "has a end_at datetime"
-  it "has a positive max_depth"
-  it "has a positive avg_depth"
-  it "has a positive min_temp"
-  it "has a positive max_temp"
-  it "belongs to a divable"
+  it "has a 'start_at' datetime"
+  it "has a 'end_at' datetime"
+  it "has a positive 'max_depth'"
+  it "has a positive 'avg_depth'"
+  it "has a positive 'min_temp'"
+  it "has a positive 'max_temp'"
+  it "belongs to a 'divable'"
+  it "can import data from a dive computer"
+  it "properly updates 'computer' field when importing from computer"
+  it "returns 'data_points' in order"
+  it "has a 'sample_interval' if 'data_points' present"
 end
