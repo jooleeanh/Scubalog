@@ -16,6 +16,8 @@ class User < ApplicationRecord
   has_many :identities, dependent: :destroy
   after_update :set_default_picture, :set_admin
 
+  enum gender: { undisclosed_gender: 0, male: 1, female: 2 }
+
   def email_verified?
     self.email && self.email !~ TEMP_EMAIL_REGEX
   end
@@ -34,7 +36,7 @@ class User < ApplicationRecord
 
     user = set_user(email, auth)
     set_image(user, auth)
-    set_extra(user, auth)
+    set_gender(user, auth)
     set_identity(user, identity)
 
     user.skip_confirmation! if user_complete_info?(user)
@@ -76,8 +78,15 @@ class User < ApplicationRecord
     end
   end
 
-  def self.set_extra(user, auth)
-    user.update(gender: auth.extra.raw_info.gender)
+  def self.set_gender(user, auth)
+    gender = auth.extra.raw_info.gender
+    case gender
+    when "undisclosed_gender" then gender = 0
+    when "male" then gender = 1
+    when "female" then gender = 2
+    else gender = 0
+    end
+    user.update(gender: gender)
   end
 
   def self.set_info(user, auth)
