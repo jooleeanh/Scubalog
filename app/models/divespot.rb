@@ -17,4 +17,5 @@
 #
 
 class Divespot < ApplicationRecord
+  serialize :location, Location
 end

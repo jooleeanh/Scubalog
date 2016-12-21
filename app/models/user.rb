@@ -54,8 +54,8 @@ class User < ApplicationRecord
   after_update :set_default_picture, :set_admin
 
   enum gender: { undisclosed_gender: 0, male: 1, female: 2 }
-  store_accessor :preferences, :unit
-  store_accessor :location, :full, :city, :state, :region, :country
+  serialize :preferences, UserPreferences
+  serialize :location, Location
 
   def email_verified?
     self.email && self.email !~ TEMP_EMAIL_REGEX
