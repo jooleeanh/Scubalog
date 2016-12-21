@@ -36,16 +36,14 @@
 #
 
 require 'rails_helper'
+require 'support/shared_examples_for_geocoding'
+
 OmniAuth.config.test_mode = true
 
 RSpec.describe User, type: :model do
 
-  let(:new_user) do
-    User.new(email: "test@test.test",
-    password: "testing",
-    first_name: "tester",
-    last_name: "testers")
-  end
+  let(:user) { FactoryGirl.create(:user) }
+  let(:new_user) { FactoryGirl.build(:user) }
 
   context "sessions and registrations" do
     context "user has not signed up yet" do
@@ -85,12 +83,15 @@ RSpec.describe User, type: :model do
     end
     context "user is signed in" do
       before do
-        user = FactoryGirl.create(:user)
-        login_as(user, scope: :user)
+        login_as(new_user, scope: :user)
       end
       it "can access the update form"
       it "can change preferred picture (fb, google, custom)"
       it "can sign out"
     end
+  end
+
+  include_examples "test_geocoding" do
+    let(:object) { user }
   end
 end

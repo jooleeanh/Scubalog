@@ -24,6 +24,7 @@
 #
 
 class Scubadive < ApplicationRecord
+  include BasicDive
   belongs_to :user
   belongs_to :divespot
   belongs_to :gear_set

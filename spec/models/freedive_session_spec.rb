@@ -24,17 +24,14 @@
 #
 
 require 'rails_helper'
+require 'support/shared_examples_for_dives'
 
 RSpec.describe FreediveSession, type: :model do
-  it "belongs to a user"
-  it "belongs to a spot"
-  it "belongs to a gear set"
-  it "can have many sightings"
-  it "can have many buddies"
+  let(:freedive_session) { FactoryGirl.create(:freedive_session) }
+
   it "has one or more dives"
-  it "is valid with valid attributes"
-  it "has a start_at datetime"
-  it "has a end_at datetime"
-  it "has an enjoyment between 1 and 5"
-  it "has a positive visibility"
+
+  include_examples "test_dive" do
+    let(:dive) { freedive_session }
+  end
 end
