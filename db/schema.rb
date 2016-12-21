@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161220220556) do
+ActiveRecord::Schema.define(version: 20161220235001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,24 @@ ActiveRecord::Schema.define(version: 20161220220556) do
     t.index ["user_id"], name: "index_buddies_on_user_id", using: :btree
   end
 
+  create_table "dives", force: :cascade do |t|
+    t.string   "divable_type"
+    t.integer  "divable_id"
+    t.string   "dive_types",      default: [],                 array: true
+    t.boolean  "computer",        default: false
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.float    "max_depth"
+    t.float    "avg_depth"
+    t.integer  "min_temp"
+    t.integer  "max_temp"
+    t.integer  "sample_interval"
+    t.json     "data_points"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["divable_type", "divable_id"], name: "index_dives_on_divable_type_and_divable_id", using: :btree
+  end
+
   create_table "divespots", force: :cascade do |t|
     t.string   "name"
     t.string   "location"
@@ -47,7 +65,7 @@ ActiveRecord::Schema.define(version: 20161220220556) do
     t.datetime "updated_at",       null: false
   end
 
-  create_table "freedives", force: :cascade do |t|
+  create_table "freedive_sessions", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "divespot_id"
     t.integer  "gear_set_id"
@@ -55,19 +73,14 @@ ActiveRecord::Schema.define(version: 20161220220556) do
     t.datetime "end_at"
     t.integer  "enjoyment"
     t.text     "comments"
-    t.string   "dive_type"
     t.text     "tip_for_others"
-    t.float    "max_depth"
-    t.float    "avg_depth"
-    t.integer  "min_temp"
-    t.integer  "max_temp"
-    t.integer  "visibility"
     t.json     "map_tracks"
+    t.integer  "visibility"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.index ["divespot_id"], name: "index_freedives_on_divespot_id", using: :btree
-    t.index ["gear_set_id"], name: "index_freedives_on_gear_set_id", using: :btree
-    t.index ["user_id"], name: "index_freedives_on_user_id", using: :btree
+    t.index ["divespot_id"], name: "index_freedive_sessions_on_divespot_id", using: :btree
+    t.index ["gear_set_id"], name: "index_freedive_sessions_on_gear_set_id", using: :btree
+    t.index ["user_id"], name: "index_freedive_sessions_on_user_id", using: :btree
   end
 
   create_table "gear_sets", force: :cascade do |t|
@@ -111,20 +124,13 @@ ActiveRecord::Schema.define(version: 20161220220556) do
     t.integer  "user_id"
     t.integer  "divespot_id"
     t.integer  "gear_set_id"
-    t.datetime "start_at"
-    t.datetime "end_at"
     t.integer  "enjoyment"
     t.text     "comments"
-    t.string   "dive_type"
     t.text     "tip_for_others"
-    t.float    "max_depth"
-    t.float    "avg_depth"
-    t.float    "min_temp"
-    t.float    "max_temp"
+    t.json     "map_tracks"
     t.integer  "visibility"
     t.integer  "start_air"
     t.integer  "end_air"
-    t.json     "polygon"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.index ["divespot_id"], name: "index_scubadives_on_divespot_id", using: :btree
@@ -172,9 +178,9 @@ ActiveRecord::Schema.define(version: 20161220220556) do
   end
 
   add_foreign_key "buddies", "users"
-  add_foreign_key "freedives", "divespots"
-  add_foreign_key "freedives", "gear_sets"
-  add_foreign_key "freedives", "users"
+  add_foreign_key "freedive_sessions", "divespots"
+  add_foreign_key "freedive_sessions", "gear_sets"
+  add_foreign_key "freedive_sessions", "users"
   add_foreign_key "gear_sets", "users"
   add_foreign_key "gear_uses", "gear_sets"
   add_foreign_key "gear_uses", "gears"

@@ -1,4 +1,16 @@
 FactoryGirl.define do
+  factory :freedive_session do
+    user nil
+    divespot nil
+    gear_set nil
+    start_at "2016-12-21 00:50:01"
+    end_at "2016-12-21 00:50:01"
+    enjoyment 1
+    comments "MyText"
+    tip_for_others "MyText"
+    map_tracks ""
+    visibility 1
+  end
   factory :dive do
     dive_types ""
     computer false
