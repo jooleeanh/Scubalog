@@ -9,6 +9,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'redis'
 gem 'devise'
 gem 'remotipart', github: 'mshibuya/remotipart'
+
 gem 'rails_admin', '>= 1.0.0.rc'
 gem 'omniauth'
 gem 'omniauth-twitter'
@@ -17,6 +18,7 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-github'
 gem 'omniauth-linkedin'
 gem 'pundit'
+gem 'virtus'
 
 gem 'sass-rails'
 gem 'jquery-rails'
@@ -44,4 +46,5 @@ group :development, :test do
 end
 
 group :development do
+  gem 'annotate'
 end

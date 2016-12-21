@@ -1,3 +1,40 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                     :integer          not null, primary key
+#  email                  :string           default(""), not null
+#  encrypted_password     :string           default(""), not null
+#  reset_password_token   :string
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer          default("0"), not null
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :inet
+#  last_sign_in_ip        :inet
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  first_name             :string
+#  last_name              :string
+#  admin                  :boolean          default("false")
+#  name                   :string
+#  facebook_picture_url   :string
+#  google_picture_url     :string
+#  dob                    :date
+#  gender                 :integer
+#  avatar_picture_url     :string
+#  location               :hstore
+#  latitude               :float
+#  longitude              :float
+#  preferences            :hstore
+#
+# Indexes
+#
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#
+
 class User < ApplicationRecord
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
@@ -15,6 +52,10 @@ class User < ApplicationRecord
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
   has_many :identities, dependent: :destroy
   after_update :set_default_picture, :set_admin
+
+  enum gender: { undisclosed_gender: 0, male: 1, female: 2 }
+  serialize :preferences, UserPreferences
+  serialize :location, Location
 
   def email_verified?
     self.email && self.email !~ TEMP_EMAIL_REGEX
@@ -34,7 +75,7 @@ class User < ApplicationRecord
 
     user = set_user(email, auth)
     set_image(user, auth)
-    set_extra(user, auth)
+    set_gender(user, auth)
     set_identity(user, identity)
 
     user.skip_confirmation! if user_complete_info?(user)
@@ -45,7 +86,7 @@ class User < ApplicationRecord
 
   def set_default_picture
     unless picture_url?
-      self.update(avatar_picture_url: "diver_avatar.png")
+      self.update_column(avatar_picture_url: "diver_avatar.png")
     end
   end
 
@@ -76,8 +117,15 @@ class User < ApplicationRecord
     end
   end
 
-  def self.set_extra(user, auth)
-    user.update(gender: auth.extra.raw_info.gender)
+  def self.set_gender(user, auth)
+    gender = auth.extra.raw_info.gender
+    case gender
+    when "undisclosed_gender" then gender = 0
+    when "male" then gender = 1
+    when "female" then gender = 2
+    else gender = 0
+    end
+    user.update(gender: gender)
   end
 
   def self.set_info(user, auth)
