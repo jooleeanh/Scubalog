@@ -11,6 +11,17 @@ FactoryGirl.define do
     map_tracks ""
     visibility 1
   end
+  factory :buddy do
+
+  end
+  factory :sighting do
+
+  end
+  factory :animal do
+    name "MyString"
+    image_url "MyString"
+    description "MyText"
+  end
   factory :dive do
     dive_types ""
     computer false
@@ -22,17 +33,6 @@ FactoryGirl.define do
     max_temp 1
     data_points ""
     sample_interval 1
-  end
-  factory :buddy do
-    
-  end
-  factory :sighting do
-    
-  end
-  factory :animal do
-    name "MyString"
-    image_url "MyString"
-    description "MyText"
   end
   factory :scubadive do
     user nil
@@ -88,7 +88,7 @@ FactoryGirl.define do
   end
   factory :divespot do
     name "MyString"
-    location "MyString"
+    location = {city: "divespot_city", state: "divespot_state", region: "divespot_region", country: "divespot_country"}
     latitude 1.5
     longitude 1.5
     max_depth 1.5
@@ -96,10 +96,12 @@ FactoryGirl.define do
     salinity 1.5
     shore false
     entry_difficulty "MyString"
+
   end
   factory :user do
     email 'test@example.com'
     password 'f4k3p455w0rd'
+    location = {city: "divespot_city", state: "divespot_state", region: "divespot_region", country: "divespot_country"}
 
     # if needed
     # is_active true
