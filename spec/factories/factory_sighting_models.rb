@@ -1,12 +1,4 @@
 FactoryGirl.define do
-
-  factory :buddy do
-    trait :invalid do
-    end
-    trait :updated do
-    end
-  end
-
   factory :sighting do
     trait :invalid do
     end
