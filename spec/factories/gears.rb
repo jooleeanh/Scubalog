@@ -13,9 +13,15 @@
 #  updated_at   :datetime         not null
 #
 
-require 'rails_helper'
-
-RSpec.describe Gear, type: :model do
-  it "is valid with valid attributes"
-  it "has a category"
+FactoryGirl.define do
+  factory :gear do
+    category "MyString"
+    brand "MyString"
+    name "MyString"
+    size "MyString"
+    detail "MyString"
+    purchased_on "2016-12-24"
+    created_at "2016-12-24 13:47:42"
+    updated_at "2016-12-24 13:47:42"
+  end
 end
