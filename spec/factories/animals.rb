@@ -15,7 +15,5 @@ FactoryGirl.define do
     name "MyString"
     image_url "MyString"
     description "MyText"
-    created_at "2016-12-24 13:41:37"
-    updated_at "2016-12-24 13:41:37"
   end
 end

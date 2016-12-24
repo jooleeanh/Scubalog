@@ -5,6 +5,8 @@
 <table>
   <thead>
     <tr>
+      <th>User</th>
+      <th>Name</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,6 +14,8 @@
   <tbody>
     <% @gear_sets.each do |gear_set| %>
       <tr>
+        <td><%= gear_set.user %></td>
+        <td><%= gear_set.name %></td>
         <td><%= link_to 'Show', gear_set %></td>
         <td><%= link_to 'Edit', edit_gear_set_path(gear_set) %></td>
         <td><%= link_to 'Destroy', gear_set, method: :delete, data: { confirm: 'Are you sure?' } %></td>

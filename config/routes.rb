@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  resources :sightings
+  resources :scubadives
+  resources :gears
+  resources :gear_uses
+  resources :gear_sets
+  resources :freedive_sessions
+  resources :divespots
+  resources :dives
+  resources :buddies
+  resources :animals
   get 'dive/index'
 
   get 'dive/show'

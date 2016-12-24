@@ -1,4 +1,54 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+  <strong>Dive types:</strong>
+  <%= @dive.dive_types %>
+</p>
+
+<p>
+  <strong>Computer:</strong>
+  <%= @dive.computer %>
+</p>
+
+<p>
+  <strong>Start at:</strong>
+  <%= @dive.start_at %>
+</p>
+
+<p>
+  <strong>End at:</strong>
+  <%= @dive.end_at %>
+</p>
+
+<p>
+  <strong>Max depth:</strong>
+  <%= @dive.max_depth %>
+</p>
+
+<p>
+  <strong>Avg depth:</strong>
+  <%= @dive.avg_depth %>
+</p>
+
+<p>
+  <strong>Min temp:</strong>
+  <%= @dive.min_temp %>
+</p>
+
+<p>
+  <strong>Max temp:</strong>
+  <%= @dive.max_temp %>
+</p>
+
+<p>
+  <strong>Sample interval:</strong>
+  <%= @dive.sample_interval %>
+</p>
+
+<p>
+  <strong>Data points:</strong>
+  <%= @dive.data_points %>
+</p>
+
 <%= link_to 'Edit', edit_dive_path(@dive) %> |
 <%= link_to 'Back', dives_path %>

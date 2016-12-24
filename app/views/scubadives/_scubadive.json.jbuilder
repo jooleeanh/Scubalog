@@ -1,2 +1,2 @@
-json.extract! scubadive, :id, :created_at, :updated_at
+json.extract! scubadive, :id, :user_id, :divespot_id, :gear_set_id, :enjoyment, :comments, :tip_for_others, :map_tracks, :visibility, :start_air, :end_air, :created_at, :updated_at
 json.url scubadive_url(scubadive, format: :json)

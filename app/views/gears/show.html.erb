@@ -1,4 +1,34 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+  <strong>Category:</strong>
+  <%= @gear.category %>
+</p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @gear.brand %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @gear.name %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @gear.size %>
+</p>
+
+<p>
+  <strong>Detail:</strong>
+  <%= @gear.detail %>
+</p>
+
+<p>
+  <strong>Purchased on:</strong>
+  <%= @gear.purchased_on %>
+</p>
+
 <%= link_to 'Edit', edit_gear_path(@gear) %> |
 <%= link_to 'Back', gears_path %>

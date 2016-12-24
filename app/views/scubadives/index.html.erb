@@ -5,6 +5,16 @@
 <table>
   <thead>
     <tr>
+      <th>User</th>
+      <th>Divespot</th>
+      <th>Gear set</th>
+      <th>Enjoyment</th>
+      <th>Comments</th>
+      <th>Tip for others</th>
+      <th>Map tracks</th>
+      <th>Visibility</th>
+      <th>Start air</th>
+      <th>End air</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,6 +22,16 @@
   <tbody>
     <% @scubadives.each do |scubadive| %>
       <tr>
+        <td><%= scubadive.user %></td>
+        <td><%= scubadive.divespot %></td>
+        <td><%= scubadive.gear_set %></td>
+        <td><%= scubadive.enjoyment %></td>
+        <td><%= scubadive.comments %></td>
+        <td><%= scubadive.tip_for_others %></td>
+        <td><%= scubadive.map_tracks %></td>
+        <td><%= scubadive.visibility %></td>
+        <td><%= scubadive.start_air %></td>
+        <td><%= scubadive.end_air %></td>
         <td><%= link_to 'Show', scubadive %></td>
         <td><%= link_to 'Edit', edit_scubadive_path(scubadive) %></td>
         <td><%= link_to 'Destroy', scubadive, method: :delete, data: { confirm: 'Are you sure?' } %></td>

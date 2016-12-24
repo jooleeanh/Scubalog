@@ -5,6 +5,16 @@
 <table>
   <thead>
     <tr>
+      <th>User</th>
+      <th>Divespot</th>
+      <th>Gear set</th>
+      <th>Start at</th>
+      <th>End at</th>
+      <th>Enjoyment</th>
+      <th>Comments</th>
+      <th>Tip for others</th>
+      <th>Map tracks</th>
+      <th>Visibility</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,6 +22,16 @@
   <tbody>
     <% @freedive_sessions.each do |freedive_session| %>
       <tr>
+        <td><%= freedive_session.user %></td>
+        <td><%= freedive_session.divespot %></td>
+        <td><%= freedive_session.gear_set %></td>
+        <td><%= freedive_session.start_at %></td>
+        <td><%= freedive_session.end_at %></td>
+        <td><%= freedive_session.enjoyment %></td>
+        <td><%= freedive_session.comments %></td>
+        <td><%= freedive_session.tip_for_others %></td>
+        <td><%= freedive_session.map_tracks %></td>
+        <td><%= freedive_session.visibility %></td>
         <td><%= link_to 'Show', freedive_session %></td>
         <td><%= link_to 'Edit', edit_freedive_session_path(freedive_session) %></td>
         <td><%= link_to 'Destroy', freedive_session, method: :delete, data: { confirm: 'Are you sure?' } %></td>

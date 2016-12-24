@@ -1,4 +1,54 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+  <strong>User:</strong>
+  <%= @freedive_session.user %>
+</p>
+
+<p>
+  <strong>Divespot:</strong>
+  <%= @freedive_session.divespot %>
+</p>
+
+<p>
+  <strong>Gear set:</strong>
+  <%= @freedive_session.gear_set %>
+</p>
+
+<p>
+  <strong>Start at:</strong>
+  <%= @freedive_session.start_at %>
+</p>
+
+<p>
+  <strong>End at:</strong>
+  <%= @freedive_session.end_at %>
+</p>
+
+<p>
+  <strong>Enjoyment:</strong>
+  <%= @freedive_session.enjoyment %>
+</p>
+
+<p>
+  <strong>Comments:</strong>
+  <%= @freedive_session.comments %>
+</p>
+
+<p>
+  <strong>Tip for others:</strong>
+  <%= @freedive_session.tip_for_others %>
+</p>
+
+<p>
+  <strong>Map tracks:</strong>
+  <%= @freedive_session.map_tracks %>
+</p>
+
+<p>
+  <strong>Visibility:</strong>
+  <%= @freedive_session.visibility %>
+</p>
+
 <%= link_to 'Edit', edit_freedive_session_path(@freedive_session) %> |
 <%= link_to 'Back', freedive_sessions_path %>

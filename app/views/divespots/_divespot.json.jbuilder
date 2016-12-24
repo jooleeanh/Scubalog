@@ -1,2 +1,2 @@
-json.extract! divespot, :id, :created_at, :updated_at
+json.extract! divespot, :id, :name, :max_depth, :avg_depth, :salinity, :shore, :entry_difficulty, :created_at, :updated_at, :location, :latitude, :longitude, :created_at, :updated_at
 json.url divespot_url(divespot, format: :json)
