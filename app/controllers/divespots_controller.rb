@@ -69,6 +69,6 @@ class DivespotsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def divespot_params
-      params.fetch(:divespot, {})
+      params.require(:divespot).permit(:name, :max_depth, :avg_depth, :salinity, :shore, :entry_difficulty)
     end
 end

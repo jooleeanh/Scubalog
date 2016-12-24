@@ -62,13 +62,13 @@ class ScubadivesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_scubadive
-      @scubadive = Scubadive.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_scubadive
+    @scubadive = Scubadive.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def scubadive_params
-      params.fetch(:scubadive, {})
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def scubadive_params
+    params.require(:scubadive).permit(:user_id, :divespot_id, :gear_set_id, :enjoyment, :comments, :tip_for_others, :map_tracks, :visibility, :start_air, :end_air)
+  end
 end

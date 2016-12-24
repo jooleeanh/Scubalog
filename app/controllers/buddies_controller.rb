@@ -69,6 +69,6 @@ class BuddiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def buddy_params
-      params.fetch(:buddy, {})
+      params.require(:buddy).permit(:user_id, :name, :buddable_type, :buddable_id)
     end
 end

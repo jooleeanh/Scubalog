@@ -69,6 +69,6 @@ class IdentitiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def identity_params
-      params.fetch(:identity, {})
+      params.require(:identity).permit()
     end
 end

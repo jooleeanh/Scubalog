@@ -69,6 +69,6 @@ class DivesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dive_params
-      params.fetch(:dive, {})
+      params.require(:dive).permit(:divable_type, :divable_id, :dive_types, :computer, :start_at, :end_at, :max_depth, :avg_depth, :min_temp, :max_temp, :sample_interval, :data_points)
     end
 end

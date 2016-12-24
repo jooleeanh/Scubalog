@@ -69,6 +69,6 @@ class GearUsesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def gear_use_params
-      params.fetch(:gear_use, {})
+      params.require(:gear_use).permit(:gear_set_id, :gear_id)
     end
 end

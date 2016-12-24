@@ -69,6 +69,6 @@ class FreediveSessionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def freedive_session_params
-      params.fetch(:freedive_session, {})
+      params.require(:freedive_session).permit(:user_id, :divespot_id, :gear_set_id, :start_at, :end_at, :enjoyment, :comments, :tip_for_others, :map_tracks, :visibility)
     end
 end
