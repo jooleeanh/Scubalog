@@ -6,7 +6,6 @@ class CreateGears < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :size
       t.string :detail
-      t.date :purchased_on
 
       t.timestamps
     end

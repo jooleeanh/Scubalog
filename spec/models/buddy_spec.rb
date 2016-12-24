@@ -4,6 +4,7 @@
 #
 #  id            :integer          not null, primary key
 #  user_id       :integer
+#  name          :string
 #  buddable_type :string
 #  buddable_id   :integer
 #  created_at    :datetime         not null
