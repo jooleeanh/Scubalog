@@ -5,7 +5,7 @@
 #  id           :integer          not null, primary key
 #  category     :string
 #  brand        :string
-#  model        :string
+#  name         :string
 #  size         :string
 #  detail       :string
 #  purchased_on :date
