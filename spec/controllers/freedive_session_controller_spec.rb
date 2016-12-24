@@ -1,4 +1,37 @@
 require 'rails_helper'
+require 'support/shared_examples_for_get_index'
+require 'support/shared_examples_for_get_show'
+require 'support/shared_examples_for_get_new'
+require 'support/shared_examples_for_get_edit'
+require 'support/shared_examples_for_post_create'
+require 'support/shared_examples_for_post_update'
+
+ROUTES = [
+  { method: "get_index",
+    data: FreediveSession,
+    noun_plural: "freedive sessions"
+  },
+  { method: "get_show",
+    data: FreediveSession  ,
+    noun_plural: "freedive sessions"
+  },
+  { method: "get_new",
+    data: FreediveSession,
+    noun_plural: "freedive sessions"
+  },
+  { method: "get_edit",
+    data: FreediveSession,
+    noun_plural: "freedive sessions"
+  },
+  { method: "post_create",
+    data: FreediveSession,
+    noun_plural: "freedive sessions"
+  },
+  { method: "post_update",
+    data: FreediveSession,
+    noun_plural: "freedive sessions"
+  },
+]
 
 RSpec.describe FreediveSessionController, type: :controller do
 
@@ -30,4 +63,13 @@ RSpec.describe FreediveSessionController, type: :controller do
     end
   end
 
-end
+  context "user is signed in" do
+    ROUTES.each do |route|
+      include_examples "test_#{route[:method]}" do
+        let(:obj) { route[:data] }
+        let(:model_instance) { FactoryGirl.create(:freedive_session) }
+        let(:new_model_instance) { FactoryGirl.create(:freedive_session_2) }
+        end
+      end
+    end
+  end
