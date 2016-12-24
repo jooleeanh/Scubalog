@@ -1,0 +1,1 @@
+json.array! @gear_uses, partial: 'gear_uses/gear_use', as: :gear_use

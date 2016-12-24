@@ -1,0 +1,1 @@
+json.array! @gear_sets, partial: 'gear_sets/gear_set', as: :gear_set

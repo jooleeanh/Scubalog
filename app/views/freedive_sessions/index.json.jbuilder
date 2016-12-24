@@ -1,0 +1,1 @@
+json.array! @freedive_sessions, partial: 'freedive_sessions/freedive_session', as: :freedive_session

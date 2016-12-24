@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  get 'dive/index'
+
+  get 'dive/show'
+
+  get 'dive/new'
+
+  get 'dive/create'
+
+  get 'dive/edit'
+
+  get 'dive/update'
+
+  get 'dive/delete'
+
   get 'gear_set/index'
 
   get 'gear_set/show'
