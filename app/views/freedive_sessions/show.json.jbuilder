@@ -1,0 +1,1 @@
+json.partial! "freedive_sessions/freedive_session", freedive_session: @freedive_session

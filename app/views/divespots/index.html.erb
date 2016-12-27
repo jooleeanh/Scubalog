@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Divespots</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Max depth</th>
+      <th>Avg depth</th>
+      <th>Salinity</th>
+      <th>Shore</th>
+      <th>Entry difficulty</th>
+      <th>Created at</th>
+      <th>Updated at</th>
+      <th>Location</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @divespots.each do |divespot| %>
+      <tr>
+        <td><%= divespot.name %></td>
+        <td><%= divespot.max_depth %></td>
+        <td><%= divespot.avg_depth %></td>
+        <td><%= divespot.salinity %></td>
+        <td><%= divespot.shore %></td>
+        <td><%= divespot.entry_difficulty %></td>
+        <td><%= divespot.location %></td>
+        <td><%= divespot.latitude %></td>
+        <td><%= divespot.longitude %></td>
+        <td><%= link_to 'Show', divespot %></td>
+        <td><%= link_to 'Edit', edit_divespot_path(divespot) %></td>
+        <td><%= link_to 'Destroy', divespot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Divespot', new_divespot_path %>

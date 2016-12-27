@@ -33,6 +33,7 @@ group :development, :test do
   gem 'better_errors'
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'rails-controller-testing'
   gem 'capybara'
   gem 'poltergeist'
   gem 'launchy'

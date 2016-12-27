@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @divespot.name %>
+</p>
+
+<p>
+  <strong>Max depth:</strong>
+  <%= @divespot.max_depth %>
+</p>
+
+<p>
+  <strong>Avg depth:</strong>
+  <%= @divespot.avg_depth %>
+</p>
+
+<p>
+  <strong>Salinity:</strong>
+  <%= @divespot.salinity %>
+</p>
+
+<p>
+  <strong>Shore:</strong>
+  <%= @divespot.shore %>
+</p>
+
+<p>
+  <strong>Entry difficulty:</strong>
+  <%= @divespot.entry_difficulty %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @divespot.location %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @divespot.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @divespot.longitude %>
+</p>
+
+<%= link_to 'Edit', edit_divespot_path(@divespot) %> |
+<%= link_to 'Back', divespots_path %>

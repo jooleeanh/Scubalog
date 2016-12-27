@@ -2,15 +2,14 @@
 #
 # Table name: gears
 #
-#  id           :integer          not null, primary key
-#  category     :string
-#  brand        :string
-#  model        :string
-#  size         :string
-#  detail       :string
-#  purchased_on :date
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id         :integer          not null, primary key
+#  category   :string
+#  brand      :string
+#  name       :string
+#  size       :string
+#  detail     :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
 class Gear < ApplicationRecord

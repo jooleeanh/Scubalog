@@ -1,0 +1,2 @@
+json.extract! freedive_session, :id, :user_id, :divespot_id, :gear_set_id, :start_at, :end_at, :enjoyment, :comments, :tip_for_others, :map_tracks, :visibility, :created_at, :updated_at
+json.url freedive_session_url(freedive_session, format: :json)

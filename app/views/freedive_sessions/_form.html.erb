@@ -1,0 +1,19 @@
+<%= simple_form_for(@freedive_session) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :user %>
+    <%= f.association :divespot %>
+    <%= f.association :gear_set %>
+    <%= f.input :start_at %>
+    <%= f.input :end_at %>
+    <%= f.input :enjoyment %>
+    <%= f.input :comments %>
+    <%= f.input :tip_for_others %>
+    <%= f.input :visibility %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

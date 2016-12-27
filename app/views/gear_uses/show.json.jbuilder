@@ -1,0 +1,1 @@
+json.partial! "gear_uses/gear_use", gear_use: @gear_use

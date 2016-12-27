@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @gear_set.user %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @gear_set.name %>
+</p>
+
+<%= link_to 'Edit', edit_gear_set_path(@gear_set) %> |
+<%= link_to 'Back', gear_sets_path %>

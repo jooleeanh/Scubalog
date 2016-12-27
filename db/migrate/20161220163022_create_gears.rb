@@ -3,10 +3,9 @@ class CreateGears < ActiveRecord::Migration[5.0]
     create_table :gears do |t|
       t.string :category
       t.string :brand
-      t.string :model
+      t.string :name
       t.string :size
       t.string :detail
-      t.date :purchased_on
 
       t.timestamps
     end

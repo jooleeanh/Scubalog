@@ -1,0 +1,2 @@
+json.extract! dive, :id, :dive_types, :computer, :start_at, :end_at, :max_depth, :avg_depth, :min_temp, :max_temp, :sample_interval, :data_points, :created_at, :updated_at
+json.url dive_url(dive, format: :json)

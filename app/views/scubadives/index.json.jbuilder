@@ -1,0 +1,1 @@
+json.array! @scubadives, partial: 'scubadives/scubadive', as: :scubadive

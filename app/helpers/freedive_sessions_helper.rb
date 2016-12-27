@@ -1,0 +1,2 @@
+module FreediveSessionsHelper
+end

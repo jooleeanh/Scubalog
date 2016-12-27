@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Dives</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Dive types</th>
+      <th>Computer</th>
+      <th>Start at</th>
+      <th>End at</th>
+      <th>Max depth</th>
+      <th>Avg depth</th>
+      <th>Min temp</th>
+      <th>Max temp</th>
+      <th>Sample interval</th>
+      <th>Data points</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dives.each do |dive| %>
+      <tr>
+        <td><%= dive.dive_types %></td>
+        <td><%= dive.computer %></td>
+        <td><%= dive.start_at %></td>
+        <td><%= dive.end_at %></td>
+        <td><%= dive.max_depth %></td>
+        <td><%= dive.avg_depth %></td>
+        <td><%= dive.min_temp %></td>
+        <td><%= dive.max_temp %></td>
+        <td><%= dive.sample_interval %></td>
+        <td><%= dive.data_points %></td>
+        <td><%= link_to 'Show', dive %></td>
+        <td><%= link_to 'Edit', edit_dive_path(dive) %></td>
+        <td><%= link_to 'Destroy', dive, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dive', new_dive_path %>

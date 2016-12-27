@@ -1,0 +1,2 @@
+module ScubadivesHelper
+end

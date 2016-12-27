@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Gear set:</strong>
+  <%= @gear_use.gear_set %>
+</p>
+
+<p>
+  <strong>Gear:</strong>
+  <%= @gear_use.gear %>
+</p>
+
+<%= link_to 'Edit', edit_gear_use_path(@gear_use) %> |
+<%= link_to 'Back', gear_uses_path %>

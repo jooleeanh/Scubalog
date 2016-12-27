@@ -4,6 +4,7 @@
 #
 #  id            :integer          not null, primary key
 #  user_id       :integer
+#  name          :string
 #  buddable_type :string
 #  buddable_id   :integer
 #  created_at    :datetime         not null
@@ -20,6 +21,6 @@ require 'rails_helper'
 RSpec.describe Buddy, type: :model do
   it "is valid with valid attributes"
   it "belongs to a buddable"
-  it "belongs to a dive"
-  it "has a unique combination of dive and buddable"
+  it "belongs to a user OR has a name"
+  it "has a unique combination of user/name and buddable"
 end
